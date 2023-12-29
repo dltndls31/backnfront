@@ -15,7 +15,7 @@ export const postService = async (
 ) => {
     const { userIdx, title, content } = req.body
 
-    const post: any = await createPost({ userIdx, title, content, connection })
+    const post = await createPost({ userIdx, title, content, connection })
 
     return res.status(200).json({
         status: '게시글이 성공적으로 등록되었습니다.',
