@@ -1,4 +1,4 @@
-import { getPostController } from '@/controllers/post'
+import { getAllPostController } from '@/controllers/post'
 import { createConnection } from '@/utils/mysql'
 import type { NextApiRequest, NextApiResponse } from 'next'
 
@@ -9,7 +9,7 @@ export default async function handler(
     const connection = await createConnection()
 
     if (req.method === 'GET') {
-        await getPostController(req, res, connection)
+        await getAllPostController(req, res, connection)
     } else {
         res.status(400).json({
             error: {

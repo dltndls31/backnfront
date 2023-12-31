@@ -13,32 +13,18 @@ export const createPost = async ({
     content,
     connection,
 }: INew) => {
-    const [rows, fields] = await connection.query(
+    const [rows] = await connection.query(
         `INSERT INTO post (userIdx, title, content) VALUES (${userIdx}, "${title}", "${content}")`
     )
     return rows
 }
 
 interface IAll {
-    idx: number
-    userIdx: number
-    title: string
-    content: string
-    createdAt: string
-    updatedAt: string
     connection: Connection
 }
 
-export const getAllPost = async ({
-    idx,
-    userIdx,
-    title,
-    content,
-    createdAt,
-    updatedAt,
-    connection,
-}: IAll) => {
-    const [rows, fields] = await connection.query(`SELECT * FROM post`)
+export const getAllPost = async ({ connection }: IAll) => {
+    const [rows] = await connection.query(`SELECT * FROM post`)
     return rows
 }
 
@@ -50,7 +36,7 @@ interface IEdit {
 }
 
 export const editPost = async ({ idx, title, content, connection }: IEdit) => {
-    const [rows, fields] = await connection.query(
+    const [rows] = await connection.query(
         `UPDATE post SET title="${title}", content="${content}" WHERE idx=${idx}`
     )
     return rows
@@ -62,15 +48,11 @@ interface IIdx {
 }
 
 export const getPost = async ({ idx, connection }: IIdx) => {
-    const [rows, fields] = await connection.query(
-        `SELECT * FROM post WHERE idx=${idx}`
-    )
+    const [rows] = await connection.query(`SELECT * FROM post WHERE idx=${idx}`)
     return rows
 }
 
 export const deletePost = async ({ idx, connection }: IIdx) => {
-    const [rows, fields] = await connection.query(
-        `DELETE FROM post WHERE idx=${idx}`
-    )
+    const [rows] = await connection.query(`DELETE FROM post WHERE idx=${idx}`)
     return rows
 }

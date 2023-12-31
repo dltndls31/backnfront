@@ -44,12 +44,6 @@ export const getAllPostService = async (
     const { idx, userIdx, title, content, createdAt, updatedAt } = req.body
 
     const post = await getAllPost({
-        idx,
-        userIdx,
-        title,
-        content,
-        createdAt,
-        updatedAt,
         connection,
     })
 
