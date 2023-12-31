@@ -1,7 +1,6 @@
 import type { Connection } from 'mysql2/promise'
 
-interface IPost {
-    idx: number
+interface INew {
     userIdx: number
     title: string
     content: string
@@ -13,39 +12,63 @@ export const createPost = async ({
     title,
     content,
     connection,
-}: IPost) => {
+}: INew) => {
     const [rows, fields] = await connection.query(
         `INSERT INTO post (userIdx, title, content) VALUES (${userIdx}, "${title}", "${content}")`
     )
     return rows
 }
 
-export const searchPost = async ({ idx, connection }: IPost) => {
-    const [rows, fields] = await connection.query(
-        `SELECT * FROM post WHERE idx=${idx}`
-    )
-    return rows
+interface IAll {
+    idx: number
+    userIdx: number
+    title: string
+    content: string
+    createdAt: string
+    updatedAt: string
+    connection: Connection
 }
 
-export const searchAllPost = async ({
+export const getAllPost = async ({
     idx,
     userIdx,
     title,
     content,
+    createdAt,
+    updatedAt,
     connection,
-}: IPost) => {
+}: IAll) => {
     const [rows, fields] = await connection.query(`SELECT * FROM post`)
     return rows
 }
 
-export const editPost = async ({ idx, title, content, connection }: IPost) => {
+interface IEdit {
+    idx: number
+    title: string
+    content: string
+    connection: Connection
+}
+
+export const editPost = async ({ idx, title, content, connection }: IEdit) => {
     const [rows, fields] = await connection.query(
         `UPDATE post SET title="${title}", content="${content}" WHERE idx=${idx}`
     )
     return rows
 }
 
-export const deletePost = async ({ idx, connection }: IPost) => {
+interface IIdx {
+    idx: number
+    connection: Connection
+}
+
+export const getPost = async ({ idx, connection }: IIdx) => {
+    const [rows, fields] = await connection.query(
+        `SELECT * FROM post WHERE idx=${idx}`
+    )
+    return rows
+}
+
+export const deletePost = async ({ idx, connection }: IIdx) => {
     const [rows, fields] = await connection.query(
         `DELETE FROM post WHERE idx=${idx}`
     )

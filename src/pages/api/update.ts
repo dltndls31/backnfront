@@ -1,4 +1,4 @@
-import { postController } from '@/controllers/post'
+import { editPostController } from '@/controllers/post'
 import { createConnection } from '@/utils/mysql'
 import type { NextApiRequest, NextApiResponse } from 'next'
 
@@ -8,8 +8,8 @@ export default async function handler(
 ) {
     const connection = await createConnection()
 
-    if (req.method === 'POST') {
-        await postController(req, res, connection)
+    if (req.method === 'PUT') {
+        await editPostController(req, res, connection)
     } else {
         res.status(400).json({
             error: {
