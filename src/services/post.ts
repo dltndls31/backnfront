@@ -18,7 +18,7 @@ export const createPostService = async (
     const post = await createPost({ userIdx, title, content, connection })
 
     return res.status(200).json({
-        status: '게시글이 성공적으로 등록되었습니다.',
+        status: '게시글이 등록되었습니다.',
     })
 }
 
@@ -32,7 +32,7 @@ export const getPostService = async (
     const post = await getPost({ idx, connection })
 
     return res.status(200).json({
-        status: '게시글이 성공적으로 조회되었습니다.',
+        status: '해당 게시글이 조회되었습니다.',
     })
 }
 
@@ -54,7 +54,7 @@ export const getAllPostService = async (
     })
 
     return res.status(200).json({
-        status: '모든 게시글이 성공적으로 조회되었습니다.',
+        status: '모든 게시글이 조회되었습니다.',
     })
 }
 
@@ -68,7 +68,7 @@ export const editPostService = async (
     const post = await editPost({ idx, title, content, connection })
 
     return res.status(200).json({
-        status: '게시글이 성공적으로 수정되었습니다.',
+        status: '게시글이 수정되었습니다.',
     })
 }
 
@@ -82,6 +82,6 @@ export const deletePostService = async (
     const post = await deletePost({ idx, connection })
 
     return res.status(200).json({
-        status: '게시글이 성공적으로 삭제되었습니다.',
+        status: '게시글이 삭제되었습니다.',
     })
 }
