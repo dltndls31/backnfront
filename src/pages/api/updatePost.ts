@@ -9,7 +9,7 @@ export default async function handler(
     const connection = await createConnection()
 
     if (req.method === 'PUT') {
-        await editPostController(req, res, connection)
+        await editPostController(req, res, connection, payload)
     } else {
         res.status(400).json({
             error: {
